@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jun 20 22:36:23 2020
-
-@author: shalo
-"""
-
-
 from flask import Flask, request, render_template
 
 import numpy as np
@@ -14,13 +6,12 @@ import pandas as pd
 app = Flask(__name__)#just a module in python
 
 
-path1=r"C:\Users\shalo\Desktop\ML stuffs\recommender system\collabrating\Movie-Recommender-in-python simple\u.data"
-path2=r"C:\Users\shalo\Desktop\ML stuffs\recommender system\collabrating\Movie-Recommender-in-python simple\Movie_Id_Titles"
+
 
 column_names = ['user_id', 'item_id', 'rating', 'timestamp']
-df = pd.read_csv(path1, sep='\t', names=column_names)
+df = pd.read_csv("u.data", sep='\t', names=column_names)
 
-movie_titles = pd.read_csv(path2)
+movie_titles = pd.read_csv("Movie_Id_Titles")
 
 df = pd.merge(df,movie_titles,on='item_id')
 
