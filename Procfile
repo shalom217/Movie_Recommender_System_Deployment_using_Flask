@@ -1,1 +1,1 @@
-web: gunicorn diabonflask:app
+web: gunicorn app:app
