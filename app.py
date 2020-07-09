@@ -49,7 +49,7 @@ def predict():
     suggested=recom.index#taking the index of the movie which is movie itself
 
     
-    return render_template('movie1.html', prediction="Recommended Movies are...................",prediction1=suggested[0],prediction2=suggested[1],prediction3=suggested[2],
+    return render_template('movie1.html', prediction="You Have good choice.... Recommended Movies are...................",prediction1=suggested[0],prediction2=suggested[1],prediction3=suggested[2],
         prediction4=suggested[3],prediction5=suggested[4])
 
 
