@@ -5,3 +5,6 @@ The service is being hosted on web using flask.Please check the user_guide file 
 ![alt text](https://github.com/shalom217/Movie_Recommender_System_Deployment_using_Flask/blob/master/Screenshot_5.png)
 ![alt text](https://github.com/shalom217/Movie_Recommender_System_Deployment_using_Flask/blob/master/Screenshot_1.png)
 ![alt text](https://github.com/shalom217/Movie_Recommender_System_Deployment_using_Flask/blob/master/Screenshot_2.png)
+
+Check this deployment on heroku:
+https://movies-recommendation-api.herokuapp.com/predict
