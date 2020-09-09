@@ -28,20 +28,21 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     movie=request.form['mv']#getting the value from html input
-    str(movie)#converting the datatype into string
-    user_ratings = moviemat[movie]#taking the user ratings of that movie from the pivot table
-    similar_to_movie = moviemat.corrwith(user_ratings)# checking correlation of user ratings of that movie with the user ratings of other movie
-    
-    corr_movie = pd.DataFrame(similar_to_movie,columns=['Correlation'])#taking it to the dataframe
-    corr_movie.dropna(inplace=True)
-    corr_movie = corr_movie.join(ratings['num of ratings'])#we will also consider the rating count because if a movie have good ratings but 
-    #rating count is less that movie will not add value
-    recom=corr_movie[corr_movie['num of ratings']>100].sort_values('Correlation',ascending=False).iloc[1:6,:]#for the recommendation max correlation and more than 100 user ratings will be considered
-    suggested=recom.index#taking the index of the movie which is movie itself
+    if str(movie) in moviemat.columns:#checking movie existance in our database
+        str(movie)#converting the datatype into string
+        user_ratings = moviemat[movie]#taking the user ratings of that movie from the pivot table
+        similar_to_movie = moviemat.corrwith(user_ratings)# checking correlation of user ratings of that movie with the user ratings of other movie
 
-    
-    return render_template('movie1.html', prediction="You Have good choice.... Recommended Movies are...................",prediction1=suggested[0],prediction2=suggested[1],prediction3=suggested[2],
-        prediction4=suggested[3],prediction5=suggested[4])
+        corr_movie = pd.DataFrame(similar_to_movie,columns=['Correlation'])#taking it to the dataframe
+        corr_movie.dropna(inplace=True)
+        corr_movie = corr_movie.join(ratings['num of ratings'])#we will also consider the rating count because if a movie have good ratings but 
+        #rating count is less that movie will not add value
+        recom=corr_movie[corr_movie['num of ratings']>100].sort_values('Correlation',ascending=False).iloc[1:6,:]#for the recommendation max correlation and more than 100 user ratings will be considered
+        suggested=recom.index#taking the index of the movie which is movie itself
+        return render_template('movie1.html', prediction="You Have good choice.... Recommended Movies are...................",prediction1=suggested[0],prediction2=suggested[1],prediction3=suggested[2],
+            prediction4=suggested[3],prediction5=suggested[4])
+    else:
+        return render_template('movie1.html', prediction="We are extremly sorry but this movies is not found in Our Movies Database. Please Check with database movies")
 
 
     
